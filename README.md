@@ -26,3 +26,5 @@ create view ques3 as select t1.day,t1.status_all,coalesce(t2.status_404,0) as st
 day order by day) t1 left join (select to_char(time,'MonthDD,YYYY') as day,count(status) as status_404 from log where status='404 NOT FOUND' group by day order by day) t2 on t1.day=t2.day;
 
 5. python threeAnswers.py
+
+The output of the program is provided in output.txt
