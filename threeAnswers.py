@@ -2,6 +2,7 @@ import psycopg2
 
 DBNAME = "news"
 
+
 def getResult(query):
     """to get the query results."""
     db = psycopg2.connect(database=DBNAME)
@@ -16,16 +17,16 @@ query_for_ques1 = "select title,count(path) as views from articles,log where art
 results_for_ques1 = getResult(query_for_ques1)
 print("\nWhat are the most popular three articles of all time?")
 for result in results_for_ques1:
-    print("{:^10} --{:^10}views".format(result[0],result[1]))
+    print("{:^10} --{:^10}views".format(result[0], result[1]))
 
 #question2 is Who are the most popular article authors of all time?
 query_for_ques2 = "select name,view from authors,ques2 where authors.id=ques2.author order by view desc"
 results_for_ques2 = getResult(query_for_ques2)
 print("\nWho are the most popular article authors of all time?")
 for result in results_for_ques2 :
-    print("{:^10} --{:^10}views".format(result[0],result[1]))
+    print("{:^10} --{:^10}views".format(result[0], result[1]))
 
-#question3 is On which days did more than 1% of requests lead to errors? 
+#question3 is On which days did more than 1% of requests lead to errors?
 query_for_ques3 = "select t1.day,t1.percentage from (select day,round((status_404*100)/status_all::decimal,1) as percentage from ques3) t1 where t1.percentage>1"
 results_for_ques3 = getResult(query_for_ques3)
 print("\nOn which days did more than 1% of requests lead to errors?")
