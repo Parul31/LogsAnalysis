@@ -9,7 +9,7 @@ Here are the questions the reporting tool answer:
 
 3. On which days did more than 1% of requests lead to errors?
 
-To run this program you need vagrant and news database.
+To run this program you need vagrant and news database. 
 Run following commands- 
 
 1. vagrant up
@@ -18,7 +18,9 @@ Run following commands-
 
 3. psql news
 
-4. create following views-
+4. To import newsdata.sql file in news database use psql -d news -f newsdata.sql command.
+
+5. create following views-
 
 create view ques2 as select articles.author,count(path) as view from log,articles where articles.slug=substring(path,10) group by articles.author;
 
