@@ -50,7 +50,7 @@ def get_error_percentage():
     results_for_ques3 = get_result(query_for_ques3)
     print("\nOn which days did more than 1% of requests lead to errors?")
     for result in results_for_ques3:
-        print("{:^10} --{:^10}%".format(result[0], result[1]))
+        print("{:^10} --{:^10}% errors".format(result[0], result[1]))
 
 if __name__ == "__main__":
     get_top_articles()
