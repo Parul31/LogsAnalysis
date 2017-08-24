@@ -24,8 +24,9 @@ Run following commands-
 
 create view ques2 as select articles.author,count(path) as view from log,articles where articles.slug=substring(path,10) group by articles.author;
 
-create view ques3 as select t1.day,t1.status_all,coalesce(t2.status_404,0) as status_404 from (select to_char(time,'MonthDD,YYYY') as day,count(status) as status_all from log group by
-day order by day) t1 left join (select to_char(time,'MonthDD,YYYY') as day,count(status) as status_404 from log where status='404 NOT FOUND' group by day order by day) t2 on t1.day=t2.day;
+create view ques3 as select to_char(t1.day,'FMMonth FMDD,YYYY') as day,t1.status_all,coalesce(t2.status_404,0) as status_404 from (select date(time) as day,count(status) as
+status_all from log group by day order by day) t1 left join (select date(time) as day,count(status) as status_404 from log where status='404 NOT FOUND' group by day order by day) t2 on t1.day
+=t2.day;
 
 5. python threeAnswers.py
 
