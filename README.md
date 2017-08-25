@@ -28,6 +28,6 @@ create view ques3 as select to_char(t1.day,'FMMonth FMDD,YYYY') as day,t1.status
 status_all from log group by day order by day) t1 left join (select date(time) as day,count(status) as status_404 from log where status='404 NOT FOUND' group by day order by day) t2 on t1.day
 =t2.day;
 
-5. python threeAnswers.py
+6. python threeAnswers.py
 
 The output of the program is provided in output.txt
